@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LightControl.cs" />
      <Compile Include="Assets\Oscillator.cs" />
      <Compile Include="Assets\Rocket.cs" />
  <Reference Include="UnityEngine.UI">

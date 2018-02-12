@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rocket : MonoBehaviour {
+public class Rocket : MonoBehaviour 
+{
 
 	[SerializeField] float mainThrust = 100f;
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] AudioClip mainEngine;
-	// [SerializeField] ParticleSystem mainEngineParticles;
-	
+    [SerializeField] AudioClip death;
+	[SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem deathParticles;
 	AudioSource audioSource;
 	Rigidbody2D rigidBody;
 
@@ -41,37 +43,52 @@ public class Rocket : MonoBehaviour {
             // do nothing
                 break;
             case "Respawn":
+			
 			print("dasdas");
                 break;
             case "Finish":
                 //StartSuccessSequence();
                 break;
             default:
-                //StartDeathSequence();
+                StartDeathSequence();
                 break;
         }
     }
 
+    private void StartDeathSequence()
+    {
+        state = State.Dying;
+        mainEngineParticles.Stop();
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+        deathParticles.Play();
+        //Invoke("LoadLastLevel", 2f);
+    }
 
 	private void Thrust()
 	{
 
-		if (Input.GetKey(KeyCode.Space))
-		{
-			rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-			if (!audioSource.isPlaying)
-        	{
-            	audioSource.PlayOneShot(mainEngine);
-         	}
-			// mainEngineParticles.Play();
-		}
-		else
+		 if (Input.GetKey(KeyCode.Space))    // can thrust while rotating
+        {
+            ApplyThrust();
+        }
+        else
         {
             audioSource.Stop();
-			// mainEngineParticles.Stop();
+            mainEngineParticles.Stop();
         }
 	}
 	
+	private void ApplyThrust()
+    {
+        rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        if (!audioSource.isPlaying) 
+        {
+            audioSource.PlayOneShot(mainEngine);
+        }
+        mainEngineParticles.Play();
+    }
+
 
 	private void Rotate()
 	{
