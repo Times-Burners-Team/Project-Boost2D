@@ -11,6 +11,11 @@ public class Rocket : MonoBehaviour
     [SerializeField] AudioClip death;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
+    
+    public float fuelSize;
+    public float fuelUsage;
+    private float currentFuel; 
+
 	AudioSource audioSource;
 	Rigidbody2D rigidBody;
 
@@ -22,6 +27,7 @@ public class Rocket : MonoBehaviour
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
+        currentFuel = fuelSize;
 	}
 	
 	// Update is called once per frame
@@ -32,7 +38,6 @@ public class Rocket : MonoBehaviour
 		Thrust();
 		Rotate();
 		}
-		
 	}
 
 	 void OnCollisionEnter2D(Collision2D col)
@@ -82,6 +87,8 @@ public class Rocket : MonoBehaviour
 	private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
+        currentFuel -= fuelUsage * Time.deltaTime;
+        print(currentFuel);
         if (!audioSource.isPlaying) 
         {
             audioSource.PlayOneShot(mainEngine);
