@@ -33,11 +33,17 @@ public class Rocket : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (state == State.Alive)
+		if (state == State.Alive && currentFuel > 0)
 		{
 		Thrust();
 		Rotate();
-		}
+		} 
+        else if (currentFuel <= 0)
+        {
+            mainEngineParticles.Stop();
+            audioSource.Stop();
+        }
+
 	}
 
 	 void OnCollisionEnter2D(Collision2D col)
