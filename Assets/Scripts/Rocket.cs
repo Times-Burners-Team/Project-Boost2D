@@ -94,7 +94,7 @@ public class Rocket : MonoBehaviour
 	private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-        currentFuel -= fuelUsage * Time.deltaTime;
+        currentFuel -= fuelUsage * Time.deltaTime * 10;
         print(currentFuel);
         fuelProgressBar.transform.localScale = new Vector2(currentFuel / fuelSize,1);
         if (!audioSource.isPlaying) 
