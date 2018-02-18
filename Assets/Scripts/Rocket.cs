@@ -9,6 +9,7 @@ public class Rocket : MonoBehaviour
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
+    [SerializeField] ParticleSystem successParticles;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
     
@@ -59,13 +60,23 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
             case "Finish":
-                //StartSuccessSequence();
-                break;
+                successParticles.Play();
+                 break;
             default:
                 StartDeathSequence();
                 break;
         }
     }
+
+    // private void StartSuccessSequence()
+    // {
+    //     state = State.Transcending;
+    //     mainEngineParticles.Stop();
+    //     audioSource.Stop();
+    //     //audioSource.PlayOneShot(death);
+        
+        
+    // }
 
     private void StartDeathSequence()
     {
@@ -94,7 +105,7 @@ public class Rocket : MonoBehaviour
 	private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-        currentFuel -= fuelUsage * Time.deltaTime * 10;
+        currentFuel -= fuelUsage * Time.deltaTime;
         print(currentFuel);
         fuelProgressBar.transform.localScale = new Vector2(currentFuel / fuelSize,1);
         if (!audioSource.isPlaying) 

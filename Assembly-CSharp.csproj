@@ -46,10 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-=======
      <Compile Include="Assets\Scripts\CameraFollower.cs" />
->>>>>>> c8979dd75e897aca81087fab95f9e779ab7c4881
      <Compile Include="Assets\Scripts\LightControl.cs" />
      <Compile Include="Assets\Scripts\Oscillator.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
