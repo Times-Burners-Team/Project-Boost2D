@@ -12,8 +12,14 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem leftThrustFirst;
+    [SerializeField] ParticleSystem leftThrustSecond;
+    [SerializeField] ParticleSystem rightThrustFirst;
+    [SerializeField] ParticleSystem rightThrustSecond;
+
     
     public GameObject fuelProgressBar;
+
     public float fuelSize;
     public float fuelUsage;
     private float currentFuel; 
@@ -60,8 +66,8 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
             case "Finish":
-                successParticles.Play();
-                 break;
+                //successParticles.Play();
+                break;
             default:
                 StartDeathSequence();
                 break;
@@ -125,10 +131,24 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
+            rightThrustFirst.Play();
+            rightThrustSecond.Play();
+        }
+        else
+        {
+            rightThrustFirst.Stop();
+            rightThrustSecond.Stop();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
+            leftThrustFirst.Play();
+            leftThrustSecond.Play();
+        }
+        else
+        {
+            leftThrustFirst.Stop();
+            leftThrustSecond.Stop();
         }
 		rigidBody.freezeRotation = false;
 	}
