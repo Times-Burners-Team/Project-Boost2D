@@ -19,8 +19,8 @@ public class Rocket : MonoBehaviour
     
     public GameObject fuelProgressBar;
 
-    public float mainThrust = 100f;
-	public float rcsThrust = 100f;
+    public float mainThrust;
+	public float rcsThrust;
     public float fuelSize;
     public float fuelUsage;
     private float currentFuel; 
