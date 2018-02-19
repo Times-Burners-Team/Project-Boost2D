@@ -5,8 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour 
 {
 
-	[SerializeField] float mainThrust = 100f;
-	[SerializeField] float rcsThrust = 100f;
+
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
     [SerializeField] ParticleSystem successParticles;
@@ -20,6 +19,8 @@ public class Rocket : MonoBehaviour
     
     public GameObject fuelProgressBar;
 
+    public float mainThrust = 100f;
+	public float rcsThrust = 100f;
     public float fuelSize;
     public float fuelUsage;
     private float currentFuel; 
