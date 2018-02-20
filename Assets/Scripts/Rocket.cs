@@ -8,10 +8,6 @@ public class Rocket : MonoBehaviour
 
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
-    [SerializeField] ParticleSystem rightThrustOne;
-    [SerializeField] ParticleSystem rightThrustTwo;
-    [SerializeField] ParticleSystem leftThrustOne;
-    [SerializeField] ParticleSystem leftThrustTwo;
     [SerializeField] ParticleSystem successParticles;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
@@ -136,10 +132,6 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
-<<<<<<< HEAD
-            rightThrustOne.Play();
-            rightThrustTwo.Play();
-=======
             rightThrustFirst.Play();
             rightThrustSecond.Play();
         }
@@ -147,16 +139,12 @@ public class Rocket : MonoBehaviour
         {
             rightThrustFirst.Stop();
             rightThrustSecond.Stop();
->>>>>>> 518a43c7d104fcfa5f8f60d0fbe8fa2e99883f3d
+
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
-<<<<<<< HEAD
-            leftThrustOne.Play();
-            leftThrustTwo.Play();
-            
-=======
+
             leftThrustFirst.Play();
             leftThrustSecond.Play();
         }
@@ -164,7 +152,7 @@ public class Rocket : MonoBehaviour
         {
             leftThrustFirst.Stop();
             leftThrustSecond.Stop();
->>>>>>> 518a43c7d104fcfa5f8f60d0fbe8fa2e99883f3d
+
         }
 		rigidBody.freezeRotation = false;
     }
