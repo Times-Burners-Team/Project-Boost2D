@@ -9,6 +9,10 @@ public class Rocket : MonoBehaviour
 	[SerializeField] float rcsThrust = 100f;
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
+    [SerializeField] ParticleSystem rightThrustOne;
+    [SerializeField] ParticleSystem rightThrustTwo;
+    [SerializeField] ParticleSystem leftThrustOne;
+    [SerializeField] ParticleSystem leftThrustTwo;
     [SerializeField] ParticleSystem successParticles;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
@@ -125,13 +129,17 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
+            rightThrustOne.Play();
+            rightThrustTwo.Play();
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
+            leftThrustOne.Play();
+            leftThrustTwo.Play();
+            
         }
 		rigidBody.freezeRotation = false;
-	}
-
+    }
 
 }
