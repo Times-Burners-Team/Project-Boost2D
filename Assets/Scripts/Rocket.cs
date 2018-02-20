@@ -5,8 +5,7 @@ using UnityEngine;
 public class Rocket : MonoBehaviour 
 {
 
-	[SerializeField] float mainThrust = 100f;
-	[SerializeField] float rcsThrust = 100f;
+
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
     [SerializeField] ParticleSystem rightThrustOne;
@@ -16,8 +15,16 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
 	[SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] ParticleSystem leftThrustFirst;
+    [SerializeField] ParticleSystem leftThrustSecond;
+    [SerializeField] ParticleSystem rightThrustFirst;
+    [SerializeField] ParticleSystem rightThrustSecond;
+
     
     public GameObject fuelProgressBar;
+
+    public float mainThrust;
+	public float rcsThrust;
     public float fuelSize;
     public float fuelUsage;
     private float currentFuel; 
@@ -64,8 +71,8 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
             case "Finish":
-                successParticles.Play();
-                 break;
+                //successParticles.Play();
+                break;
             default:
                 StartDeathSequence();
                 break;
@@ -129,15 +136,35 @@ public class Rocket : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
+<<<<<<< HEAD
             rightThrustOne.Play();
             rightThrustTwo.Play();
+=======
+            rightThrustFirst.Play();
+            rightThrustSecond.Play();
+        }
+        else
+        {
+            rightThrustFirst.Stop();
+            rightThrustSecond.Stop();
+>>>>>>> 518a43c7d104fcfa5f8f60d0fbe8fa2e99883f3d
         }
         else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
+<<<<<<< HEAD
             leftThrustOne.Play();
             leftThrustTwo.Play();
             
+=======
+            leftThrustFirst.Play();
+            leftThrustSecond.Play();
+        }
+        else
+        {
+            leftThrustFirst.Stop();
+            leftThrustSecond.Stop();
+>>>>>>> 518a43c7d104fcfa5f8f60d0fbe8fa2e99883f3d
         }
 		rigidBody.freezeRotation = false;
     }
