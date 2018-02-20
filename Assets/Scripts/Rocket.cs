@@ -134,25 +134,17 @@ public class Rocket : MonoBehaviour
             transform.Rotate(Vector3.forward * rotationThisFrame);
             rightThrustFirst.Play();
             rightThrustSecond.Play();
+            leftThrustFirst.Stop();
+            leftThrustSecond.Stop();
         }
-        else
-        {
-            rightThrustFirst.Stop();
-            rightThrustSecond.Stop();
-
-        }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
 
             leftThrustFirst.Play();
             leftThrustSecond.Play();
-        }
-        else
-        {
-            leftThrustFirst.Stop();
-            leftThrustSecond.Stop();
-
+            rightThrustFirst.Stop();
+            rightThrustSecond.Stop();
         }
 		rigidBody.freezeRotation = false;
     }
