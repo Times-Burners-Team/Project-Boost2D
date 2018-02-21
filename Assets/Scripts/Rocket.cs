@@ -90,6 +90,10 @@ public class Rocket : MonoBehaviour
         state = State.Dying;
         mainEngineParticles.Stop();
         audioSource.Stop();
+        leftThrustFirst.Stop();
+        leftThrustSecond.Stop();
+        rightThrustFirst.Stop();
+        rightThrustSecond.Stop();
         audioSource.PlayOneShot(death);
         deathParticles.Play();
         //Invoke("LoadLastLevel", 2f);
@@ -134,19 +138,27 @@ public class Rocket : MonoBehaviour
             transform.Rotate(Vector3.forward * rotationThisFrame);
             rightThrustFirst.Play();
             rightThrustSecond.Play();
-            leftThrustFirst.Stop();
-            leftThrustSecond.Stop();
         }
-        else if (Input.GetKey(KeyCode.D))
+        else
+        {
+            rightThrustFirst.Stop();
+            rightThrustSecond.Stop();
+        }
+        
+        if (Input.GetKey(KeyCode.D))
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
 
             leftThrustFirst.Play();
             leftThrustSecond.Play();
-            rightThrustFirst.Stop();
-            rightThrustSecond.Stop();
         }
-		rigidBody.freezeRotation = false;
+        else
+        {
+            leftThrustFirst.Stop();
+            leftThrustSecond.Stop();
+        }
+		
+        rigidBody.freezeRotation = false;
     }
 
 }
