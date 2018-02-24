@@ -17,13 +17,13 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem rightThrustSecond;
 
     
-    public GameObject fuelProgressBar;
+    //public GameObject fuelProgressBar;
 
     public float mainThrust;
 	public float rcsThrust;
-    public float fuelSize;
-    public float fuelUsage;
-    private float currentFuel; 
+    //public float fuelSize;
+    //public float fuelUsage;
+    //private float currentFuel; 
 
 	AudioSource audioSource;
 	Rigidbody2D rigidBody;
@@ -36,24 +36,24 @@ public class Rocket : MonoBehaviour
 	{
 		rigidBody = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
-        currentFuel = fuelSize;
+        //currentFuel = fuelSize;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
-		if (state == State.Alive && currentFuel > 0)
+		if (state == State.Alive)
 		{
 		Thrust();
 		Rotate();
 		} 
-        else if (currentFuel <= 0)
-        {
-            mainEngineParticles.Stop();
-            audioSource.Stop();
-        }
+    //     else if (currentFuel <= 0)
+    //     {
+    //         mainEngineParticles.Stop();
+    //         audioSource.Stop();
+    //     }
 
-	}
+    }
 
 	 void OnCollisionEnter2D(Collision2D col)
     {
@@ -116,9 +116,9 @@ public class Rocket : MonoBehaviour
 	private void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
-        currentFuel -= fuelUsage * Time.deltaTime;
-        print(currentFuel);
-        fuelProgressBar.transform.localScale = new Vector2(currentFuel / fuelSize,1);
+        //currentFuel -= fuelUsage * Time.deltaTime;
+        //print(currentFuel);
+        //fuelProgressBar.transform.localScale = new Vector2(currentFuel / fuelSize,1);
         if (!audioSource.isPlaying) 
         {
             audioSource.PlayOneShot(mainEngine);
