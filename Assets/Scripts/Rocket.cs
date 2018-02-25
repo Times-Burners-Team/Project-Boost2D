@@ -8,13 +8,14 @@ public class Rocket : MonoBehaviour
 
 	[SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
-    [SerializeField] ParticleSystem successParticles;
-	[SerializeField] ParticleSystem mainEngineParticles;
+    //[SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
-    [SerializeField] ParticleSystem leftThrustFirst;
-    [SerializeField] ParticleSystem leftThrustSecond;
-    [SerializeField] ParticleSystem rightThrustFirst;
-    [SerializeField] ParticleSystem rightThrustSecond;
+
+
+
+    public Click[] Control;
+
 
     
     //public GameObject fuelProgressBar;
@@ -44,7 +45,7 @@ public class Rocket : MonoBehaviour
 	{
 		if (state == State.Alive)
 		{
-		Thrust();
+        Thrust();
 		Rotate();
 		} 
     //     else if (currentFuel <= 0)
@@ -54,6 +55,7 @@ public class Rocket : MonoBehaviour
     //     }
 
     }
+    
 
 	 void OnCollisionEnter2D(Collision2D col)
     {
@@ -90,19 +92,15 @@ public class Rocket : MonoBehaviour
         state = State.Dying;
         mainEngineParticles.Stop();
         audioSource.Stop();
-        leftThrustFirst.Stop();
-        leftThrustSecond.Stop();
-        rightThrustFirst.Stop();
-        rightThrustSecond.Stop();
         audioSource.PlayOneShot(death);
         deathParticles.Play();
         //Invoke("LoadLastLevel", 2f);
     }
 
-	private void Thrust()
+private void Thrust()
 	{
 
-		 if (Input.GetKey(KeyCode.Space))    // can thrust while rotating
+		 if (Control[0].clickedIs == true)    // can thrust while rotating
         {
             ApplyThrust();
         }
@@ -133,32 +131,17 @@ public class Rocket : MonoBehaviour
 
         float rotationThisFrame = rcsThrust * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.A))
+        if (Control[1].clickedIs == true)
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
-            rightThrustFirst.Play();
-            rightThrustSecond.Play();
-        }
-        else
-        {
-            rightThrustFirst.Stop();
-            rightThrustSecond.Stop();
-        }
+        }    
         
-        if (Input.GetKey(KeyCode.D))
+        if (Control[2].clickedIs == true)
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
 
-            leftThrustFirst.Play();
-            leftThrustSecond.Play();
         }
-        else
-        {
-            leftThrustFirst.Stop();
-            leftThrustSecond.Stop();
-        }
-		
-        rigidBody.freezeRotation = false;
+		rigidBody.freezeRotation = false;
     }
 
 }
