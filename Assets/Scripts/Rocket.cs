@@ -5,19 +5,14 @@ using UnityEngine;
 public class Rocket : MonoBehaviour 
 {
 
-
-	[SerializeField] AudioClip mainEngine;
+    [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
     //[SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
 
-
-
     public Click[] Control;
 
-
-    
     //public GameObject fuelProgressBar;
 
     public float mainThrust;
@@ -45,14 +40,14 @@ public class Rocket : MonoBehaviour
 	{
 		if (state == State.Alive)
 		{
-        Thrust();
-		Rotate();
+            Thrust();
+		    Rotate();
 		} 
-    //     else if (currentFuel <= 0)
-    //     {
-    //         mainEngineParticles.Stop();
-    //         audioSource.Stop();
-    //     }
+    //  else if (currentFuel <= 0)
+    //  {
+    //      mainEngineParticles.Stop();
+    //      audioSource.Stop();
+    //   }
 
     }
     
@@ -82,9 +77,7 @@ public class Rocket : MonoBehaviour
     //     state = State.Transcending;
     //     mainEngineParticles.Stop();
     //     audioSource.Stop();
-    //     //audioSource.PlayOneShot(death);
-        
-        
+    //     audioSource.PlayOneShot(death);
     // }
 
     private void StartDeathSequence()
@@ -100,7 +93,7 @@ public class Rocket : MonoBehaviour
 private void Thrust()
 	{
 
-		 if (Control[0].clickedIs == true)    // can thrust while rotating
+		if (Control[0].clickedIs == true)    // can thrust while rotating
         {
             ApplyThrust();
         }
@@ -117,10 +110,12 @@ private void Thrust()
         //currentFuel -= fuelUsage * Time.deltaTime;
         //print(currentFuel);
         //fuelProgressBar.transform.localScale = new Vector2(currentFuel / fuelSize,1);
+        
         if (!audioSource.isPlaying) 
         {
             audioSource.PlayOneShot(mainEngine);
         }
+        
         mainEngineParticles.Play();
     }
 
@@ -139,9 +134,9 @@ private void Thrust()
         if (Control[2].clickedIs == true)
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
-
         }
-		rigidBody.freezeRotation = false;
+		
+        rigidBody.freezeRotation = false;
     }
 
 }

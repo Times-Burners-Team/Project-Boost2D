@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightControl : MonoBehaviour {
+public class LightControl : MonoBehaviour 
+{
 
     float nRand = 0;
 	
