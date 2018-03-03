@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 [DisallowMultipleComponent]
-public class Oscillator : MonoBehaviour {
+public class Oscillator : MonoBehaviour 
+{
 
 	public Vector3 movementVector = new Vector3(10f, 10f);
 	public float period = 2f;

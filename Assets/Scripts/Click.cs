@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Click : MonoBehaviour {
+public class Click : MonoBehaviour 
+{
 
 	public bool clickedIs = false;
 
