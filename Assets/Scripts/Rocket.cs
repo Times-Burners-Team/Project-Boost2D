@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour 
 {
@@ -64,7 +65,7 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
             case "Finish":
-                //successParticles.Play();
+				StartSuccessSequence();
                 break;
             default:
                 StartDeathSequence();
@@ -72,13 +73,14 @@ public class Rocket : MonoBehaviour
         }
     }
 
-    // private void StartSuccessSequence()
-    // {
-    //     state = State.Transcending;
-    //     mainEngineParticles.Stop();
-    //     audioSource.Stop();
-    //     audioSource.PlayOneShot(death);
-    // }
+     private void StartSuccessSequence()
+     {
+        state = State.Transcending;
+        mainEngineParticles.Stop();
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+		LoadNextScene ();
+     }
 
     private void StartDeathSequence()
     {
@@ -89,6 +91,17 @@ public class Rocket : MonoBehaviour
         deathParticles.Play();
         //Invoke("LoadLastLevel", 2f);
     }
+
+	private void LoadNextScene()
+	{
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		int nextScenceIndex = currentSceneIndex + 1;
+		if (nextScenceIndex == SceneManager.sceneCountInBuildSettings)
+		{
+			nextScenceIndex = 0; // loop back to start
+		}
+		SceneManager.LoadScene(nextScenceIndex);
+	}
 
     private void Thrust()
 	{
