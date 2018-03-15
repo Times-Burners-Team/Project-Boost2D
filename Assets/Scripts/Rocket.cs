@@ -41,7 +41,7 @@ public class Rocket : MonoBehaviour
 		if (state == State.Alive)
 		{
             Thrust();
-		    Rotate();
+		    //Rotate();
 		} 
     //  else if (currentFuel <= 0)
     //  {
@@ -90,10 +90,20 @@ public class Rocket : MonoBehaviour
         //Invoke("LoadLastLevel", 2f);
     }
 
-private void Thrust()
+    private void Thrust()
 	{
-
-		if (Control[0].clickedIs == true)    // can thrust while rotating
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
+		if (Control[0].clickedIs == true && Control[1].clickedIs == false)    // can thrust while rotating
+        {
+            ApplyThrust();
+            RotateLeft();
+        }
+        else if (Control[1].clickedIs == true && Control[0].clickedIs == false)
+        {
+            ApplyThrust();
+            RotateRight();
+        }
+        else if (Control[0].clickedIs == true && Control[1].clickedIs == true)
         {
             ApplyThrust();
         }
@@ -103,6 +113,8 @@ private void Thrust()
             mainEngineParticles.Stop();
         }
 	}
+
+    
 	
 	private void ApplyThrust()
     {
@@ -120,23 +132,18 @@ private void Thrust()
     }
 
 
-	private void Rotate()
-	{
-		rigidBody.freezeRotation = true;    // take manual control of rotation
+    private void RotateLeft()
+    {
+        rigidBody.freezeRotation = true;
+        float rotateThisFrame = rcsThrust * Time.deltaTime;
+        transform.Rotate(Vector3.forward * rotateThisFrame);
+    }
 
-        float rotationThisFrame = rcsThrust * Time.deltaTime;
-
-        if (Control[1].clickedIs == true)
-        {
-            transform.Rotate(Vector3.forward * rotationThisFrame);
-        }    
-        
-        if (Control[2].clickedIs == true)
-        {
-            transform.Rotate(-Vector3.forward * rotationThisFrame);
-        }
-		
-        rigidBody.freezeRotation = false;
+    private void RotateRight()
+    {
+        rigidBody.freezeRotation = true;
+        float rotateThisFrame = rcsThrust * Time.deltaTime;
+        transform.Rotate(-Vector3.forward * rotateThisFrame);
     }
 
 }
