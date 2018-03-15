@@ -93,7 +93,7 @@ public class Rocket : MonoBehaviour
     private void Thrust()
 	{
         float rotationThisFrame = rcsThrust * Time.deltaTime;
-		if (Control[0].clickedIs == true && Control[1].clickedIs == false)    // can thrust while rotating
+		if (Control[0].clickedIs == true && Control[1].clickedIs == false)    
         {
             ApplyThrust();
             RotateLeft();
