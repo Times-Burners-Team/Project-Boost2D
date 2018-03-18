@@ -14,6 +14,9 @@ public class Rocket : MonoBehaviour
 
     public Click[] Control;
 
+	public GameObject WinMenuUI;
+
+
     //public GameObject fuelProgressBar;
 
     public float mainThrust;
@@ -64,8 +67,8 @@ public class Rocket : MonoBehaviour
 			
 			print("dasdas");
                 break;
-            case "Finish":
-				StartSuccessSequence();
+		case "Finish":
+			StartSuccessSequence ();
                 break;
             default:
                 StartDeathSequence();
@@ -73,13 +76,19 @@ public class Rocket : MonoBehaviour
         }
     }
 
+
      private void StartSuccessSequence()
      {
         state = State.Transcending;
         mainEngineParticles.Stop();
         audioSource.Stop();
         audioSource.PlayOneShot(death);
-		LoadNextScene ();
+		WinMenuUI.SetActive (true);
+		Time.timeScale = 0f;
+		NextLevel ();
+		ToMainMenu ();
+		prevLevel ();
+
      }
 
     private void StartDeathSequence()
@@ -91,8 +100,38 @@ public class Rocket : MonoBehaviour
         deathParticles.Play();
         //Invoke("LoadLastLevel", 2f);
     }
+		
 
-	private void LoadNextScene()
+	public void NextLevel(){
+		if (Control [0].clickedIs == true) {
+			LoadNextScene ();
+		}
+	}
+
+	public void ToMainMenu(){
+		if (Control [1].clickedIs == true) {
+			SceneManager.LoadScene (0);
+		}
+	}
+
+	public void prevLevel(){
+		if (Control [2].clickedIs == true) {
+			LoadPrevScene ();
+		}
+	}
+
+	public void LoadPrevScene()
+	{
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		int prevScenceIndex = currentSceneIndex - 1;
+		if (prevScenceIndex == SceneManager.sceneCountInBuildSettings)
+		{
+			prevScenceIndex = 0; // loop back to start
+		}
+		SceneManager.LoadScene(prevScenceIndex);
+	}
+
+	public void LoadNextScene()
 	{
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 		int nextScenceIndex = currentSceneIndex + 1;
