@@ -13,6 +13,7 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem deathParticles;
 
     public Click[] Control;
+	public Click[] WinMen;
 
 	public GameObject WinMenuUI;
 
@@ -68,6 +69,7 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
 		case "Finish":
+			
 			StartSuccessSequence ();
                 break;
             default:
@@ -85,10 +87,6 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(death);
 		WinMenuUI.SetActive (true);
 		Time.timeScale = 0f;
-		NextLevel ();
-		ToMainMenu ();
-		prevLevel ();
-
      }
 
     private void StartDeathSequence()
@@ -103,21 +101,16 @@ public class Rocket : MonoBehaviour
 		
 
 	public void NextLevel(){
-		if (Control [0].clickedIs == true) {
-			LoadNextScene ();
-		}
+			LoadNextScene();
+		
 	}
 
 	public void ToMainMenu(){
-		if (Control [1].clickedIs == true) {
-			SceneManager.LoadScene (0);
-		}
+		SceneManager.LoadScene(0);
 	}
 
 	public void prevLevel(){
-		if (Control [2].clickedIs == true) {
-			LoadPrevScene ();
-		}
+			LoadPrevScene();
 	}
 
 	public void LoadPrevScene()
