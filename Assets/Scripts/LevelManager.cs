@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 	public static int countUnlockedLevel = 1;
+	int x = countUnlockedLevel;
+
 	[SerializeField]
 	Sprite unlockedIcon;
 
 	[SerializeField]
 	Sprite lockedIcon;
+
 
 	void Start () {
 		for (int i = 0; i < transform.childCount; i++) {
@@ -31,6 +35,13 @@ public class LevelManager : MonoBehaviour {
 					transform.GetChild(i).GetComponent<Button>().interactable = false;
 				#endregion
 		}
+
+			#region nextLevel
+			int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+			if (countUnlockedLevel == currentSceneIndex) {
+				
+			}
+			#endregion
 	}
 }
 }

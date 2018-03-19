@@ -13,9 +13,11 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem deathParticles;
 
     public Click[] Control;
-	public Click[] WinMen;
+
 
 	public GameObject WinMenuUI;
+	public GameObject LoseMenuUI;
+
 
 
     //public GameObject fuelProgressBar;
@@ -69,14 +71,21 @@ public class Rocket : MonoBehaviour
 			print("dasdas");
                 break;
 		case "Finish":
-			
 			StartSuccessSequence ();
+			NextLevel ();
                 break;
             default:
                 StartDeathSequence();
                 break;
         }
     }
+
+	public void NextLevel(){
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		if (LevelManager.countUnlockedLevel == currentSceneIndex) {
+			LevelManager.countUnlockedLevel += 1;
+		}
+	}
 
 
      private void StartSuccessSequence()
@@ -96,22 +105,27 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(death);
         deathParticles.Play();
-        //Invoke("LoadLastLevel", 2f);
+		LoseMenuUI.SetActive (true);
+		Time.timeScale = 0f;
     }
-		
-
-	public void NextLevel(){
-			LoadNextScene();
-		
-	}
 
 	public void ToMainMenu(){
 		SceneManager.LoadScene(0);
+		Time.timeScale = 1f;
 	}
 
 	public void prevLevel(){
 			LoadPrevScene();
 	}
+
+	public void LoadCurrentLevel(){
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene(currentSceneIndex);
+		Time.timeScale = 1f;
+
+	}
+
+
 
 	public void LoadPrevScene()
 	{
@@ -122,6 +136,7 @@ public class Rocket : MonoBehaviour
 			prevScenceIndex = 0; // loop back to start
 		}
 		SceneManager.LoadScene(prevScenceIndex);
+		Time.timeScale = 1f;
 	}
 
 	public void LoadNextScene()
@@ -133,6 +148,7 @@ public class Rocket : MonoBehaviour
 			nextScenceIndex = 0; // loop back to start
 		}
 		SceneManager.LoadScene(nextScenceIndex);
+		Time.timeScale = 1f;
 	}
 
     private void Thrust()
