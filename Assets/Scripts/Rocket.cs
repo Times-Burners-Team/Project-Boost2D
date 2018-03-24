@@ -80,6 +80,7 @@ public class Rocket : MonoBehaviour
                 break;
             default:
                 StartDeathSequence();
+                rigidBody.freezeRotation = false;
                 break;
         }
     }
@@ -102,11 +103,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(win);
 		WinMenuUI.SetActive (true);
-<<<<<<< HEAD
-		Time.timeScale = 1f;
-=======
 		Time.timeScale = 0.5f;
->>>>>>> b7ec4b20c8446a9fad3578f43a8affa0dbe6bc15
      }
 
     private void StartDeathSequence()
@@ -118,11 +115,8 @@ public class Rocket : MonoBehaviour
         deathParticles.Play();
 		LoseMenuUI.SetActive (true);
 		Time.timeScale = 0.5f;
-<<<<<<< HEAD
-=======
         
         
->>>>>>> b7ec4b20c8446a9fad3578f43a8affa0dbe6bc15
     }
 
 	public void ToMainMenu()
