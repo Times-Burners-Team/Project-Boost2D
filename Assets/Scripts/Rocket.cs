@@ -14,6 +14,7 @@ public class Rocket : MonoBehaviour
 
     public Click[] Control;
 
+    Vector3 pos;
 
 	public GameObject WinMenuUI;
 	public GameObject LoseMenuUI;
@@ -37,6 +38,7 @@ public class Rocket : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+        
 		rigidBody = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
         //currentFuel = fuelSize;
@@ -64,15 +66,16 @@ public class Rocket : MonoBehaviour
         switch (col.gameObject.tag)
         {
 			case "Friendly":
-            // do nothing
+                rigidBody.freezeRotation = false;
                 break;
             case "Respawn":
-			
-			print("dasdas");
+                rigidBody.freezeRotation = false;
+                print("dasdas");
                 break;
-		case "Finish":
-			StartSuccessSequence ();
-			NextLevel ();
+	    	case "Finish":
+                StartSuccessSequence ();
+                NextLevel ();
+                rigidBody.freezeRotation = false;
                 break;
             default:
                 StartDeathSequence();
@@ -95,7 +98,7 @@ public class Rocket : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(death);
 		WinMenuUI.SetActive (true);
-		Time.timeScale = 0f;
+		Time.timeScale = 1f;
      }
 
     private void StartDeathSequence()
@@ -106,7 +109,7 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(death);
         deathParticles.Play();
 		LoseMenuUI.SetActive (true);
-		Time.timeScale = 0f;
+		Time.timeScale = 0.5f;
     }
 
 	public void ToMainMenu(){
@@ -124,8 +127,6 @@ public class Rocket : MonoBehaviour
 		Time.timeScale = 1f;
 
 	}
-
-
 
 	public void LoadPrevScene()
 	{
@@ -167,9 +168,11 @@ public class Rocket : MonoBehaviour
         else if (Control[0].clickedIs == true && Control[1].clickedIs == true)
         {
             ApplyThrust();
+            
         }
         else
-        {
+        {   
+           
             audioSource.Stop();
             mainEngineParticles.Stop();
         }
