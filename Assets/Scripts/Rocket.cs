@@ -8,7 +8,8 @@ public class Rocket : MonoBehaviour
 
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
-    //[SerializeField] ParticleSystem successParticles;
+    [SerializeField] AudioClip win;
+    [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
 
@@ -59,7 +60,7 @@ public class Rocket : MonoBehaviour
     }
     
 
-	 void OnCollisionEnter2D(Collision2D col)
+	 public void OnCollisionEnter2D(Collision2D col)
     {
         switch (col.gameObject.tag)
         {
@@ -80,22 +81,25 @@ public class Rocket : MonoBehaviour
         }
     }
 
-	public void NextLevel(){
+	public void NextLevel()
+    {
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		if (LevelManager.countUnlockedLevel == currentSceneIndex) {
+		if (LevelManager.countUnlockedLevel == currentSceneIndex) 
+        {
 			LevelManager.countUnlockedLevel += 1;
 		}
 	}
 
 
-     private void StartSuccessSequence()
-     {
+    private void StartSuccessSequence()
+    {
         state = State.Transcending;
         mainEngineParticles.Stop();
+        successParticles.Play();
         audioSource.Stop();
-        audioSource.PlayOneShot(death);
+        audioSource.PlayOneShot(win);
 		WinMenuUI.SetActive (true);
-		Time.timeScale = 0f;
+		Time.timeScale = 0.5f;
      }
 
     private void StartDeathSequence()
@@ -106,19 +110,24 @@ public class Rocket : MonoBehaviour
         audioSource.PlayOneShot(death);
         deathParticles.Play();
 		LoseMenuUI.SetActive (true);
-		Time.timeScale = 0f;
+		Time.timeScale = 0.5f;
+        
+        
     }
 
-	public void ToMainMenu(){
+	public void ToMainMenu()
+    {
 		SceneManager.LoadScene(0);
 		Time.timeScale = 1f;
 	}
 
-	public void prevLevel(){
-			LoadPrevScene();
+	public void prevLevel()
+    {
+		LoadPrevScene();
 	}
 
-	public void LoadCurrentLevel(){
+	public void LoadCurrentLevel()
+    {
 		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
 		SceneManager.LoadScene(currentSceneIndex);
 		Time.timeScale = 1f;
