@@ -19,6 +19,9 @@ public class Rocket : MonoBehaviour
 
 	public GameObject WinMenuUI;
 	public GameObject LoseMenuUI;
+    public GameObject Settings;
+    public GameObject ControlFly;
+    
 
 
 
@@ -80,6 +83,7 @@ public class Rocket : MonoBehaviour
                 break;
             default:
                 StartDeathSequence();
+                rigidBody.freezeRotation = false;
                 break;
         }
     }
@@ -96,33 +100,35 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
-        state = State.Transcending;
-        mainEngineParticles.Stop();
-        successParticles.Play();
-        audioSource.Stop();
-        audioSource.PlayOneShot(win);
-		WinMenuUI.SetActive (true);
-<<<<<<< HEAD
-		Time.timeScale = 1f;
-=======
-		Time.timeScale = 0.5f;
->>>>>>> b7ec4b20c8446a9fad3578f43a8affa0dbe6bc15
+        if(state != State.Dying)
+        {
+            state = State.Transcending;
+            mainEngineParticles.Stop();
+            successParticles.Play();
+            audioSource.Stop();
+            audioSource.PlayOneShot(win);
+            WinMenuUI.SetActive (true);
+            Time.timeScale = 0.5f;
+            Settings.SetActive (false);
+            ControlFly.SetActive (false);
+        }
+       
      }
 
     private void StartDeathSequence()
     {
-        state = State.Dying;
-        mainEngineParticles.Stop();
-        audioSource.Stop();
-        audioSource.PlayOneShot(death);
-        deathParticles.Play();
-		LoseMenuUI.SetActive (true);
-		Time.timeScale = 0.5f;
-<<<<<<< HEAD
-=======
-        
-        
->>>>>>> b7ec4b20c8446a9fad3578f43a8affa0dbe6bc15
+        if(state != State.Transcending)
+        {
+            state = State.Dying;
+            mainEngineParticles.Stop();
+            audioSource.Stop();
+            audioSource.PlayOneShot(death);
+            deathParticles.Play();
+            LoseMenuUI.SetActive (true);
+            Time.timeScale = 0.5f;
+            Settings.SetActive (false);
+            ControlFly.SetActive (false);
+        }  
     }
 
 	public void ToMainMenu()
