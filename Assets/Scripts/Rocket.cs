@@ -97,26 +97,30 @@ public class Rocket : MonoBehaviour
 
     private void StartSuccessSequence()
     {
-        state = State.Transcending;
-        mainEngineParticles.Stop();
-        successParticles.Play();
-        audioSource.Stop();
-        audioSource.PlayOneShot(win);
-		WinMenuUI.SetActive (true);
-		Time.timeScale = 0.5f;
+        if(state != State.Dying)
+        {
+            state = State.Transcending;
+            mainEngineParticles.Stop();
+            successParticles.Play();
+            audioSource.Stop();
+            audioSource.PlayOneShot(win);
+            WinMenuUI.SetActive (true);
+            Time.timeScale = 0.5f;
+        }
      }
 
     private void StartDeathSequence()
     {
-        state = State.Dying;
-        mainEngineParticles.Stop();
-        audioSource.Stop();
-        audioSource.PlayOneShot(death);
-        deathParticles.Play();
-		LoseMenuUI.SetActive (true);
-		Time.timeScale = 0.5f;
-        
-        
+        if(state != State.Transcending)
+        {
+            state = State.Dying;
+            mainEngineParticles.Stop();
+            audioSource.Stop();
+            audioSource.PlayOneShot(death);
+            deathParticles.Play();
+            LoseMenuUI.SetActive (true);
+            Time.timeScale = 0.5f;
+        } 
     }
 
 	public void ToMainMenu()

@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Options.cs" />
      <Compile Include="Assets\Scripts\Oscillator.cs" />
+     <Compile Include="Assets\Scripts\Oscillator2.cs" />
      <Compile Include="Assets\Scripts\PauseMenu.cs" />
      <Compile Include="Assets\Scripts\Rocket.cs" />
  <Reference Include="UnityEngine.UI">
