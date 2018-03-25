@@ -19,6 +19,9 @@ public class Rocket : MonoBehaviour
 
 	public GameObject WinMenuUI;
 	public GameObject LoseMenuUI;
+    public GameObject Settings;
+    public GameObject ControlFly;
+    
 
 
 
@@ -106,7 +109,10 @@ public class Rocket : MonoBehaviour
             audioSource.PlayOneShot(win);
             WinMenuUI.SetActive (true);
             Time.timeScale = 0.5f;
+            Settings.SetActive (false);
+            ControlFly.SetActive (false);
         }
+       
      }
 
     private void StartDeathSequence()
@@ -120,7 +126,9 @@ public class Rocket : MonoBehaviour
             deathParticles.Play();
             LoseMenuUI.SetActive (true);
             Time.timeScale = 0.5f;
-        } 
+            Settings.SetActive (false);
+            ControlFly.SetActive (false);
+        }  
     }
 
 	public void ToMainMenu()
