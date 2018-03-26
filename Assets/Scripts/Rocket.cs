@@ -101,8 +101,8 @@ public class Rocket : MonoBehaviour
         {
             state = State.Transcending;
             mainEngineParticles.Stop();
-            successParticles.Play();
             audioSource.Stop();
+            successParticles.Play();
             audioSource.PlayOneShot(win);
             WinMenuUI.SetActive (true);
             Time.timeScale = 0.5f;
