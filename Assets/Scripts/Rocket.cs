@@ -105,7 +105,7 @@ public class Rocket : MonoBehaviour
             audioSource.Stop();
             audioSource.PlayOneShot(win);
             WinMenuUI.SetActive (true);
-            Time.timeScale = 0.5f;
+            Time.timeScale = 1f;
         }
      }
 
