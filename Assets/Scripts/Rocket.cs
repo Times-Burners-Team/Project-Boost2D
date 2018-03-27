@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Rocket : MonoBehaviour 
 {
@@ -21,7 +22,8 @@ public class Rocket : MonoBehaviour
 	public GameObject LoseMenuUI;
     public GameObject Settings;
     public GameObject ControlFly;
-    
+    private int coinsInt = 0;
+    public Text coinsText;    
 
 
 
@@ -51,6 +53,8 @@ public class Rocket : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+        coinsText.text = coinsInt.ToString();
+
 		if (state == State.Alive)
 		{
             Thrust();
@@ -62,6 +66,12 @@ public class Rocket : MonoBehaviour
     //      audioSource.Stop();
     //   }
 
+    }
+    
+    public void OnTriggerEnter2D(Collider2D coins)
+    {
+        Destroy(coins.gameObject);
+        coinsInt += 750;
     }
     
     public void OnCollisionEnter2D(Collision2D col)
