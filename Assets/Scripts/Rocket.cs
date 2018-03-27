@@ -64,8 +64,8 @@ public class Rocket : MonoBehaviour
 
     }
     
+    public void OnCollisionEnter2D(Collision2D col)
 
-	 public void OnCollisionEnter2D(Collision2D col)
     {
         switch (col.gameObject.tag)
         {
@@ -74,11 +74,10 @@ public class Rocket : MonoBehaviour
                 break;
             case "Respawn":
                 rigidBody.freezeRotation = false;
-                print("dasdas");
                 break;
 	    	case "Finish":
-                StartSuccessSequence ();
-                NextLevel ();
+                StartSuccessSequence();
+                NextLevel();
                 rigidBody.freezeRotation = false;
                 break;
             default:
@@ -88,17 +87,7 @@ public class Rocket : MonoBehaviour
         }
     }
 
-	public void NextLevel()
-    {
-		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-		if (LevelManager.countUnlockedLevel == currentSceneIndex) 
-        {
-			LevelManager.countUnlockedLevel += 1;
-		}
-	}
-
-
-    private void StartSuccessSequence()
+    public void StartSuccessSequence()
     {
         if(state != State.Dying)
         {
@@ -115,7 +104,7 @@ public class Rocket : MonoBehaviour
        
      }
 
-    private void StartDeathSequence()
+    public void StartDeathSequence()
     {
         if(state != State.Transcending)
         {
@@ -135,6 +124,14 @@ public class Rocket : MonoBehaviour
     {
 		SceneManager.LoadScene(0);
 		Time.timeScale = 1f;
+	}
+    public void NextLevel()
+    {
+		int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+		if (LevelManager.countUnlockedLevel == currentSceneIndex) 
+        {
+			LevelManager.countUnlockedLevel += 1;
+		}
 	}
 
 	public void prevLevel()
@@ -174,7 +171,7 @@ public class Rocket : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-    private void Thrust()
+    public void Thrust()
 	{
         float rotationThisFrame = rcsThrust * Time.deltaTime;
 		if (Control[0].clickedIs == true && Control[1].clickedIs == false)    
@@ -202,7 +199,7 @@ public class Rocket : MonoBehaviour
 
     
 	
-	private void ApplyThrust()
+	public void ApplyThrust()
     {
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
         //currentFuel -= fuelUsage * Time.deltaTime;
@@ -218,14 +215,14 @@ public class Rocket : MonoBehaviour
     }
 
 
-    private void RotateLeft()
+    public void RotateLeft()
     {
         rigidBody.freezeRotation = true;
         float rotateThisFrame = rcsThrust * Time.deltaTime;
         transform.Rotate(Vector3.forward * rotateThisFrame);
     }
 
-    private void RotateRight()
+    public void RotateRight()
     {
         rigidBody.freezeRotation = true;
         float rotateThisFrame = rcsThrust * Time.deltaTime;
