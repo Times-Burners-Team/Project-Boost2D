@@ -13,30 +13,37 @@ public class Rocket : MonoBehaviour
     [SerializeField] ParticleSystem successParticles;
     [SerializeField] ParticleSystem mainEngineParticles;
     [SerializeField] ParticleSystem deathParticles;
+    [SerializeField] Sprite Star;
+	[SerializeField] Sprite EmptyStar;
+
+    public GameObject Star1;
+    public GameObject Star2;
+    public GameObject Star3;
+
 
     public Click[] Control;
 
+    
     Vector3 pos;
+
 
 	public GameObject WinMenuUI;
 	public GameObject LoseMenuUI;
     public GameObject Settings;
     public GameObject ControlFly;
-    private int coinsInt = 0;
+   
+
+    public int coinsInt = 0;
+    
+
     public Text coinsText;    
-
-
-
-    //public GameObject fuelProgressBar;
-
     public float mainThrust;
 	public float rcsThrust;
-    //public float fuelSize;
-    //public float fuelUsage;
-    //private float currentFuel; 
+   
 
 	AudioSource audioSource;
 	Rigidbody2D rigidBody;
+
 
 	enum State { Alive, Dying, Transcending };
     State state = State.Alive;
@@ -47,7 +54,7 @@ public class Rocket : MonoBehaviour
         
 		rigidBody = GetComponent<Rigidbody2D>();
 		audioSource = GetComponent<AudioSource>();
-        //currentFuel = fuelSize;
+        
 	}
 	
 	// Update is called once per frame
@@ -58,24 +65,54 @@ public class Rocket : MonoBehaviour
 		if (state == State.Alive)
 		{
             Thrust();
-		    //Rotate();
 		} 
-    //  else if (currentFuel <= 0)
-    //  {
-    //      mainEngineParticles.Stop();
-    //      audioSource.Stop();
-    //   }
+    }
+    
+    
 
+    public void OnTriggerEnter2D(Collider2D pickUp)
+    {   
+       int scorernd = new System.Random().Next(350,500); 
+        switch(pickUp.gameObject.tag)
+        {
+            case "Coins":
+                Destroy(pickUp.gameObject);
+                coinsInt += scorernd;
+            break;
+        }
     }
-    
-    public void OnTriggerEnter2D(Collider2D coins)
-    {
-        Destroy(coins.gameObject);
-        coinsInt += 750;
-    }
-    
+    public void CurrentStarValue()
+        {
+            if(coinsInt <= 500)
+            {
+               Star1.GetComponent<Image>().sprite = Star;
+			   Star1.GetComponent<Button>().interactable = false;
+               Star2.GetComponent<Image>().sprite = EmptyStar;
+			   Star2.GetComponent<Button>().interactable = false;
+               Star3.GetComponent<Image>().sprite = EmptyStar;
+			   Star3.GetComponent<Button>().interactable = false;
+            }
+            else if(coinsInt <= 1000 && coinsInt > 500)
+            {
+               Star1.GetComponent<Image>().sprite = Star;
+			   Star1.GetComponent<Button>().interactable = false;
+               Star2.GetComponent<Image>().sprite = Star;
+			   Star2.GetComponent<Button>().interactable = false;
+               Star3.GetComponent<Image>().sprite = EmptyStar;
+			   Star3.GetComponent<Button>().interactable = false;
+            }
+            else if(coinsInt <= 1500 && coinsInt > 1000)
+            {
+               Star1.GetComponent<Image>().sprite = Star;
+			   Star1.GetComponent<Button>().interactable = false;
+               Star2.GetComponent<Image>().sprite = Star;
+			   Star2.GetComponent<Button>().interactable = false;
+               Star3.GetComponent<Image>().sprite = Star;
+			   Star3.GetComponent<Button>().interactable = false;
+            }
+        }
+
     public void OnCollisionEnter2D(Collision2D col)
-
     {
         switch (col.gameObject.tag)
         {
@@ -88,6 +125,7 @@ public class Rocket : MonoBehaviour
 	    	case "Finish":
                 StartSuccessSequence();
                 NextLevel();
+                CurrentStarValue();
                 rigidBody.freezeRotation = false;
                 break;
             default:

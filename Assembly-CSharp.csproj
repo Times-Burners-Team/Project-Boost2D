@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\ButtonManager.cs" />
      <Compile Include="Assets\Scripts\CameraFollower.cs" />
      <Compile Include="Assets\Scripts\Click.cs" />
+     <Compile Include="Assets\Scripts\CurrentStar.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\LightControl.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
