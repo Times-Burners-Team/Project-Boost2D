@@ -87,8 +87,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 209
     height: 573
+=======
+    width: 202
+    height: 597
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
   m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
@@ -334,9 +339,15 @@ MonoBehaviour:
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: ce260000
     m_LastClickedID: 9934
     m_ExpandedIDs: 00000000ce24000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: cc240000
+    m_LastClickedID: 9420
+    m_ExpandedIDs: 00000000cc2400004e25000000ca9a3bffffff7f
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -480,9 +491,15 @@ MonoBehaviour:
     height: 552
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 
     m_LastClickedID: 0
     m_ExpandedIDs: 3efbffffe6fbffff00000000f62600005027000088270000
+=======
+    m_SelectedIDs: dabe0100
+    m_LastClickedID: 114394
+    m_ExpandedIDs: 7261ebffe629eeffeeeeefff38f2efff2af5efff84f9efffe6fcefff6a00f0ffec03f0ffd011f0ff1a15f0ff6619f0ffb61cf0ff9a20f0ff5224f0ffe827f0ffda2af0ff422ef0ff3232f0ffb835f0ffaa38f0ffac3cf0ffba3ff0ffac42f0ff0046f0ff8649f0ff704df0ffb050f0ff7054f0ff9a57f0ffb05af0ffc860f0ff32b5f3ff2ebcf3ff0ec5f3ffdc09f8ff9c0ef8ff4877fcff6887fcff848bfcffbe94fcff8ab9fcffdabcfcffd4bffcfff2c2fcfff8fffcffd260fdffd4acffff30bcffff14bfffff64c5ffffb4c8ffffa6cbffffe0ceffff1cd3ffff2ad6ffff1cd9ffff0edcfffff2dfffff7ee3ffffbee6ffff7eebffffa2efffff0ef3ffffbaf7ffffe6fbffff00000000da4b00009a81000056820000f8370100
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -501,7 +518,11 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
+<<<<<<< HEAD
   - Level 1
+=======
+  - Level 16
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -532,14 +553,24 @@ MonoBehaviour:
     width: 1318
     height: 552
   m_SceneLighting: 1
+<<<<<<< HEAD
   lastFramingTime: 423.4499599050345
+=======
+  lastFramingTime: 6384.203841970096
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: -22.005234, y: -10.354104, z: -5.4225416}
     speed: 2
     m_Value: {x: -22.005234, y: -10.354104, z: -5.4225416}
+=======
+    m_Target: {x: 38.59423, y: -5.4481883, z: 0.71875}
+    speed: 2
+    m_Value: {x: 38.59423, y: -5.4481883, z: 0.71875}
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -566,9 +597,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
+<<<<<<< HEAD
     m_Target: 10.462859
     speed: 2
     m_Value: 10.462859
+=======
+    m_Target: 113.45939
+    speed: 2
+    m_Value: 113.45939
+>>>>>>> 1cfd4f33b79a5920f6c1325ef9a28837110ca6b2
   m_Ortho:
     m_Target: 1
     speed: 2
